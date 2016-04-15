@@ -4,6 +4,8 @@
 *.o
 *.obj
 
+build-test_functions-Desktop-Debug
+
 # Precompiled Headers
 *.gch
 *.pch
