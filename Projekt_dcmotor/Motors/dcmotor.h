@@ -8,16 +8,16 @@
 class Dcmotor
 {
 public:
-    Dcmotor(int pinMotorForward, int pinMotorDirection, int pinMotorSpeed);
+    Dcmotor(int pinForward, int pinBackward, int pinSpeed);
     bool initPins();
     void forward();
     void backward();
     void Speed();
     void stopMotor();
 private:
-    int m_ipinMotorForward;
-    int m_ipinMotorDirection;
-    int m_ipinMotorSpeed;
+    int m_ipinForward;
+    int m_ipinBackward;
+    int m_ipinSpeed;
     int m_ipwm;
 };
 
