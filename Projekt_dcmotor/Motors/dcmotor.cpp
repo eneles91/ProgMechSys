@@ -2,24 +2,47 @@
 
 Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed)
 {
-    m_ipinBackward = pinMotorDirection;
-    m_ipinBackward = pinMotorForward;
+    m_ipinBackward = pinBackward;
+    m_ipinForward = pinForward;
     m_ipinSpeed = pinSpeed;
-    if(initPins())
-    {
-
-    }
+    initPins();
 }
+
 bool Dcmotor::initPins()
 {
-    bool isPin = ((m_ipinMotorDirection <= 29 && m_ipinMotorDirection >=0) || (m_ipinMotorForward <= 29 && m_ipinMotorForward >=0) || (m_ipinMotorSpeed <= 29 && m_ipinMotorSpeed >=0));
+    bool isPin = ((m_ipinBackward <= 31 && m_ipinBackward>=0) || (m_ipinForward <= 31 && m_ipinForward >=0) || (m_ipinSpeed <= 31 && m_ipinSpeed >=0));
     if (isPin == true)
     {
+        wiringPiSetup();
         pinMode(m_ipinBackward, OUTPUT);
         pinMode(m_ipinForward, OUTPUT);
-        softPwmCreate(m_ipwm, 0, 255);
+        pinMode(m_ipinSpeed, PWM_OUTPUT);
+        softPwmCreate(m_ipinSpeed, 0, 255);
         return true;
     }
     else
         return false;
+}
+
+void Dcmotor :: setPwm(int pwmVal)
+{
+      softPwmWrite(m_ipinSpeed, pwmVal);
+}
+
+void Dcmotor :: forward()
+{
+    digitalWrite(m_ipinForward, 1);
+    digitalWrite(m_ipinBackward, 0);
+}
+
+void Dcmotor :: backward()
+{
+    digitalWrite(m_ipinForward, 0);
+    digitalWrite(m_ipinBackward, 1);
+}
+
+void Dcmotor :: stopMotor()
+{
+    digitalWrite(m_ipinForward, 0);
+    digitalWrite(m_ipinBackward, 0);
 }

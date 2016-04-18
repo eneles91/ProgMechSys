@@ -6,6 +6,9 @@ CONFIG -= qt
 SOURCES += main.cpp \
     dcmotor.cpp
 
+INCLUDEPATH += ../wiringPI/wiringPI
+LIBS += -L ../wiringPI/wiringPI -lwiringPi
+
 include(deployment.pri)
 qtcAddDeployment()
 

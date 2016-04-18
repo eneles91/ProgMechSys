@@ -9,6 +9,9 @@ class Dcmotor
 {
 public:
     Dcmotor(int pinForward, int pinBackward, int pinSpeed);
+
+    void setPwm(int pwmVal);
+
     bool initPins();
     void forward();
     void backward();
@@ -18,7 +21,6 @@ private:
     int m_ipinForward;
     int m_ipinBackward;
     int m_ipinSpeed;
-    int m_ipwm;
 };
 
 #endif // DCMOTOR_H
