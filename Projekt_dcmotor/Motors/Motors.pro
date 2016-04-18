@@ -3,8 +3,12 @@ CONFIG += console
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    dcmotor.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
+
+HEADERS += \
+    dcmotor.h
 

@@ -1,10 +1,12 @@
 #include <iostream>
+#include "strings.h"
+#include "dcmotor.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
+
     return 0;
 }
 
