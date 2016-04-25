@@ -13,7 +13,7 @@ bool Dcmotor::initPins()
     bool isPin = ((m_ipinBackward <= 31 && m_ipinBackward>=0) || (m_ipinForward <= 31 && m_ipinForward >=0) || (m_ipinSpeed <= 31 && m_ipinSpeed >=0));
     if (isPin == true)
     {
-        wiringPiSetup();
+
         pinMode(m_ipinBackward, OUTPUT);
         pinMode(m_ipinForward, OUTPUT);
         pinMode(m_ipinSpeed, PWM_OUTPUT);

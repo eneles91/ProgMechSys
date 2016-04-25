@@ -15,3 +15,5 @@ qtcAddDeployment()
 HEADERS += \
     dcmotor.h
 
+
+
