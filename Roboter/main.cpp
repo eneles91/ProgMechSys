@@ -1,6 +1,8 @@
 #include <iostream>
 #include "strings.h"
 #include "dcmotor.h"
+#include "linesensor.h"
+#include <wiringPi.h>
 
 using namespace std;
 
@@ -21,10 +23,18 @@ int main()
     motor1.setPwm(50);
     motor2.setPwm(50);
 
+    Linesensor sensorLeft(21);
+    Linesensor sensorRight(22);
+
+
+
     while (!bFinish)
     {
         cout<< "Befehl eingeben: " << endl;
         cin >> cInput;
+
+
+
         if (cInput == 'F' || cInput == 'f')
         {
             motor1.forward();
@@ -39,6 +49,8 @@ int main()
         {
             motor1.stopMotor();
             motor2.stopMotor();
+            cout << sensorLeft.checkWhiteGround() << endl;
+            cout << sensorRight.checkWhiteGround() << endl;
         }
         else if (cInput == 'Q' || cInput == 'q')
         {

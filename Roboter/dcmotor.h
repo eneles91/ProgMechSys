@@ -11,7 +11,6 @@ public:
     Dcmotor(int pinForward, int pinBackward, int pinSpeed);
 
     void setPwm(int pwmVal);
-
     bool initPins();
     void forward();
     void backward();
