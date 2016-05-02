@@ -1,10 +1,6 @@
 #include <wiringPi.h>
 #include <QApplication>
-#include <iostream>
 #include "mainwindow.h"
-#include "strings.h"
-#include "dcmotor.h"
-#include "linesensor.h"
 #include "mobileplatform.h"
 
 
@@ -15,12 +11,11 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
-    mobilePlatform *mobilePlat = new mobilePlatform();
+    //Pointer MobilePlatform an QApplication w übergeben, um connects zu definieren
+    MobilePlatform *mobilePlat = new MobilePlatform();
     w.setMobilePlatform(mobilePlat);
     w.guiConnects();
-
     w.show();    
 
-    //delete
     return a.exec();
 }

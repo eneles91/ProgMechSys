@@ -1,7 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+
+#pragma once
+
+#include "ui_mainwindow.h"
 #include "mobileplatform.h"
-#include <QMainWindow>
 
 namespace Ui {
 class MainWindow;
@@ -12,16 +15,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    void setMobilePlatform(mobilePlatform *activePlatform);
+    explicit MainWindow(QWidget *parent = 0);       
     ~MainWindow();
 
-
+    void setMobilePlatform(MobilePlatform *activePlatform);
     void guiConnects();
 
 private:
     Ui::MainWindow *ui;
-    mobilePlatform *m_pMobilePlatform;
+    MobilePlatform *m_pMobilePlatform;
 
 };
 

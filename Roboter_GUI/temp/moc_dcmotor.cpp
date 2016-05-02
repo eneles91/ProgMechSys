@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "dcmotor.h"
+#include "../dcmotor.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'dcmotor.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
@@ -30,17 +30,17 @@ static const uint qt_meta_data_Dcmotor[] = {
        0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
-       8,   17,   17,   17, 0x0a,
-      18,   17,   17,   17, 0x0a,
-      32,   17,   17,   17, 0x0a,
-      47,   17,   17,   17, 0x0a,
+       8,   20,   27,   27, 0x0a,
+      28,   27,   27,   27, 0x0a,
+      38,   27,   27,   27, 0x0a,
+      49,   27,   27,   27, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Dcmotor[] = {
-    "Dcmotor\0setPwm()\0\0moveForward()\0"
-    "moveBackward()\0stopMotor()\0"
+    "Dcmotor\0setPwm(int)\0pwmVal\0\0forward()\0"
+    "backward()\0stop()\0"
 };
 
 void Dcmotor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -49,14 +49,13 @@ void Dcmotor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         Q_ASSERT(staticMetaObject.cast(_o));
         Dcmotor *_t = static_cast<Dcmotor *>(_o);
         switch (_id) {
-        case 0: _t->setPwm(); break;
-        case 1: _t->moveForward(); break;
-        case 2: _t->moveBackward(); break;
-        case 3: _t->stopMotor(); break;
+        case 0: _t->setPwm((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: _t->forward(); break;
+        case 2: _t->backward(); break;
+        case 3: _t->stop(); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObjectExtraData Dcmotor::staticMetaObjectExtraData = {

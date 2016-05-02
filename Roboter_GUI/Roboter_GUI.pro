@@ -1,9 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2016-05-02T09:45:47
-#
-#-------------------------------------------------
-
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -27,9 +21,14 @@ HEADERS  += mainwindow.h \
     linesensor.h \
     mobileplatform.h
 
+DESTDIR = ./bin
+OBJECTS_DIR = ./temp
+MOC_DIR = ./temp
+RCC_DIR = ./temp
+UI_DIR = ./temp
+
 FORMS    += mainwindow.ui
 
 
-#
 
 
