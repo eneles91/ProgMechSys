@@ -15,7 +15,8 @@ public:
     Dcmotor(int pinForward, int pinBackward, int pinSpeed);    
     bool initPins();
 public slots:
-    void setPwm(int pwmVal);
+    //void setPwm(int pwmVal);
+    void setPwm();
     void moveForward();
     void moveBackward();
     void stopMotor();

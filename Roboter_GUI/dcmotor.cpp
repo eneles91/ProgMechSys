@@ -24,13 +24,20 @@ bool Dcmotor::initPins()
         return false;
 }
 
-void Dcmotor::setPwm(int pwmVal)
+/*void Dcmotor::setPwm(int pwmVal)
 {
+
       softPwmWrite(m_ipinSpeed, pwmVal);
+}*/
+
+void Dcmotor::setPwm()
+{
+     softPwmWrite(m_ipinSpeed, 50);
 }
 
 void Dcmotor::moveForward()
 {
+    std::cout << "test" << std::endl;
     digitalWrite(m_ipinForward, 1);
     digitalWrite(m_ipinBackward, 0);
 }

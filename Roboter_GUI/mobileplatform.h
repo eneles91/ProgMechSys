@@ -5,17 +5,21 @@
 #ifndef MOBILEPLATFORM_H
 #define MOBILEPLATFORM_H
 
-class mobilePlatform
+class mobilePlatform : public QObject
 {
+    Q_OBJECT
+
 public:
     mobilePlatform();
     ~mobilePlatform();
-private:
+
     Dcmotor *m_pMotorRight;
     Dcmotor *m_pMotorLeft;
 
     Linesensor *m_pLineSensorRight;
     Linesensor *m_pLineSensorLeft;
+private:
+
 
 
 };

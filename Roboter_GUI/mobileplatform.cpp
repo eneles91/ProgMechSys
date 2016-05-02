@@ -1,4 +1,5 @@
 #include "mobileplatform.h"
+#include <QObject>
 
 
 
@@ -24,6 +25,7 @@ mobilePlatform::mobilePlatform()
 
     m_pLineSensorRight = new Linesensor(LINESENSOR_RIGHT);
     m_pLineSensorLeft = new Linesensor(LINESENSOR_LEFT);
+
 }
 
 mobilePlatform::~mobilePlatform()

@@ -5,6 +5,7 @@
 #include "strings.h"
 #include "dcmotor.h"
 #include "linesensor.h"
+#include "mobileplatform.h"
 
 
 int main(int argc, char *argv[])
@@ -13,7 +14,13 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     MainWindow w;
+
+    mobilePlatform *mobilePlat = new mobilePlatform();
+    w.setMobilePlatform(mobilePlat);
+    w.guiConnects();
+
     w.show();    
 
+    //delete
     return a.exec();
 }
