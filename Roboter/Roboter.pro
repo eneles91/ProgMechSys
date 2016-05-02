@@ -5,7 +5,8 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     dcmotor.cpp \
-    linesensor.cpp
+    linesensor.cpp \
+    mobileplatform.cpp
 
 INCLUDEPATH += ../wiringPI/wiringPI
 LIBS += -L ../wiringPI/wiringPI -lwiringPi
@@ -15,7 +16,8 @@ qtcAddDeployment()
 
 HEADERS += \
     dcmotor.h \
-    linesensor.h
+    linesensor.h \
+    mobileplatform.h
 
 
 

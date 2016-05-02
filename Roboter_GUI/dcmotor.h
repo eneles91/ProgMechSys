@@ -4,18 +4,22 @@
 #include <iostream>
 #include <wiringPi.h>
 #include <softPwm.h>
+#include <QObject>
 
-
-class Dcmotor
+class Dcmotor : public QObject
 {
-public:
-    Dcmotor(int pinForward, int pinBackward, int pinSpeed);
 
+Q_OBJECT
+
+public:
+    Dcmotor(int pinForward, int pinBackward, int pinSpeed);    
+    bool initPins();
+public slots:
     void setPwm(int pwmVal);
     void moveForward();
     void moveBackward();
     void stopMotor();
-    bool initPins();
+signals:
 private:
     int m_ipinForward;
     int m_ipinBackward;
