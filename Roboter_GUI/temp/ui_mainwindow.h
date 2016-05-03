@@ -35,6 +35,7 @@ public:
     QPushButton *btn_stop;
     QLabel *label;
     QSpinBox *btn_speed;
+    QPushButton *btn_followLine;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -66,6 +67,9 @@ public:
         btn_speed = new QSpinBox(centralWidget);
         btn_speed->setObjectName(QString::fromUtf8("btn_speed"));
         btn_speed->setGeometry(QRect(30, 80, 81, 31));
+        btn_followLine = new QPushButton(centralWidget);
+        btn_followLine->setObjectName(QString::fromUtf8("btn_followLine"));
+        btn_followLine->setGeometry(QRect(270, 270, 141, 31));
         MainWindow->setCentralWidget(centralWidget);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -88,6 +92,7 @@ public:
         btn_left->setText(QApplication::translate("MainWindow", "Left", 0, QApplication::UnicodeUTF8));
         btn_stop->setText(QApplication::translate("MainWindow", "stop", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "Speed", 0, QApplication::UnicodeUTF8));
+        btn_followLine->setText(QApplication::translate("MainWindow", "Follow Line", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

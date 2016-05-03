@@ -14,6 +14,8 @@ public:
     MobilePlatform();
     ~MobilePlatform();
 
+    bool endReached;
+
     Dcmotor *m_pMotorRight;
     Dcmotor *m_pMotorLeft;
 
@@ -27,6 +29,9 @@ public:
     void motionStop();
     void setSpeed(int pwmSignal);
 public slots:
+
+    void slot_followLine();
+    void slot_endFollowLine();
     void slot_moveForward();
     void slot_moveBackward();
     void slot_moveRight();

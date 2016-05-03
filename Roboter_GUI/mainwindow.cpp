@@ -32,6 +32,10 @@ void MainWindow::guiConnects()
     connect(ui->btn_left,SIGNAL(released()), m_pMobilePlatform, SLOT(slot_stopMotion()));
 
     connect(ui->btn_stop, SIGNAL(clicked()), m_pMobilePlatform, SLOT(slot_stopMotion()));
+    connect(ui->btn_stop, SIGNAL(clicked()), m_pMobilePlatform, SLOT(slot_endFollowLine()));
 
     connect(ui->btn_speed, SIGNAL(valueChanged(int)), m_pMobilePlatform, SLOT(slot_setSpeed(int)));
+
+    connect(ui->btn_followLine, SIGNAL(clicked()), m_pMobilePlatform, SLOT(slot_followLine()));
+
 }

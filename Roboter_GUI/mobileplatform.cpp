@@ -104,3 +104,35 @@ void MobilePlatform::slot_setSpeed(int speed)
         m_pMotorLeft->setPwm(speed);
     }
 }
+
+
+void MobilePlatform :: slot_followLine()
+{
+    endReached = true;
+
+
+    while(endReached){
+
+        //Forward motion
+        if((!m_pLineSensorLeft->getStatus())&&(!m_pLineSensorRight->getStatus()))
+        {
+            moveForward();
+        }
+
+        //Left Motion:
+        if((m_pLineSensorLeft->getStatus())&&(!m_pLineSensorRight->getStatus())){
+            moveLeft();
+        }
+
+        //Right motion:
+        if((!m_pLineSensorLeft->getStatus())&&(m_pLineSensorRight->getStatus())){
+            moveRight();
+        }
+     }
+}
+
+void MobilePlatform::slot_endFollowLine()
+{
+    endReached = false;
+}
+

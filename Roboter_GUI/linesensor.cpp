@@ -7,7 +7,8 @@ Linesensor::Linesensor(int pinInput)
 {
     m_ipinInput= pinInput;
     initPins();
-    //std::cout << initPins() << std::endl;
+
+    digitalWrite(m_ipinInput, 0);
 }
 
 bool Linesensor::initPins()
