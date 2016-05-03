@@ -13,8 +13,11 @@
 //Constants linesensor left side
 #define LINESENSOR_LEFT         21
 
+//Konstruktor
 MobilePlatform::MobilePlatform()
 {
+    moveToThread(&m_thread);
+    m_thread.start();
     m_pMotorRight = new Dcmotor(MOTOR_RIGHT_FORWARD, MOTOR_RIGHT_BACKWARD, MOTOR_RIGHT_PWM);
     m_pMotorLeft = new Dcmotor(MOTOR_LEFT_FORWARD, MOTOR_LEFT_BACKWARD, MOTOR_LEFT_PWM);
 
@@ -22,8 +25,14 @@ MobilePlatform::MobilePlatform()
     m_pLineSensorLeft = new Linesensor(LINESENSOR_LEFT);
 }
 
+//Destruktor
 MobilePlatform::~MobilePlatform()
 {
+    if(m_thread.isRunning()){
+        m_thread.terminate();
+        m_thread.wait();
+    }
+
     delete m_pMotorRight;
     delete m_pMotorLeft;
     delete m_pLineSensorRight;
@@ -32,35 +41,30 @@ MobilePlatform::~MobilePlatform()
 
 void MobilePlatform::moveForward()
 {
-    std::cout << "Move Forward" << std::endl;
     m_pMotorRight->forward();
     m_pMotorLeft->forward();
 }
 
 void MobilePlatform::moveBackward()
 {
-    std::cout << "Move Backward" << std::endl;
     m_pMotorRight->backward();
     m_pMotorLeft->backward();
 }
 
 void MobilePlatform::moveRight()
 {
-    std::cout << "Move Right" << std::endl;
     m_pMotorLeft->forward();
     m_pMotorRight->stop();
 }
 
 void MobilePlatform::moveLeft()
 {
-    std::cout << "Move Left" << std::endl;
     m_pMotorRight->forward();
     m_pMotorLeft->stop();
 }
 
 void MobilePlatform::motionStop()
 {
-    std::cout << "Stop Motion" << std::endl;
     m_pMotorRight->stop();
     m_pMotorLeft->stop();
 }
@@ -107,34 +111,36 @@ void MobilePlatform::slot_setSpeed(int speed)
 
 void MobilePlatform :: slot_followLine()
 {
-    endReached = true;
+    m_bendReached = true;
 
-    while(endReached){
-
-        std::cout << "in while" << std::endl;
+    while(m_bendReached)
+    {
+        std::cout << "while" << std::endl;
         //Forward motion
-        if((!m_pLineSensorLeft->getStatus())&&(!m_pLineSensorRight->getStatus()))
+        if((m_pLineSensorLeft->getStatus())&&(m_pLineSensorRight->getStatus()))
         {
-            std::cout << "forward" << std::endl;
             moveForward();
         }
-
         //Left Motion:
-        if((m_pLineSensorLeft->getStatus())&&(!m_pLineSensorRight->getStatus())){
-            std::cout << "left" << std::endl;
+        if((!m_pLineSensorLeft->getStatus())&&(m_pLineSensorRight->getStatus()))
+        {
             moveLeft();
         }
-
         //Right motion:
-        if((!m_pLineSensorLeft->getStatus())&&(m_pLineSensorRight->getStatus())){
-            std::cout << "right" << std::endl;
+        if((m_pLineSensorLeft->getStatus())&&(!m_pLineSensorRight->getStatus()))
+        {
             moveRight();
         }
+
+
+        QCoreApplication::processEvents();
      }
 }
 
 void MobilePlatform::slot_endFollowLine()
 {
-    endReached = false;
+    m_mutex.lock();
+    m_bendReached = false;
+    m_mutex.unlock();
 }
 

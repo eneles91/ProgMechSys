@@ -5,6 +5,10 @@
 #include "linesensor.h"
 #include <iostream>
 #include <QObject>
+#include <QThread>
+#include <QMutex>
+#include <QCoreApplication>
+#include <QTimer>
 
 class MobilePlatform : public QObject
 {
@@ -14,7 +18,7 @@ public:
     MobilePlatform();
     ~MobilePlatform();
 
-    bool endReached;
+    bool m_bendReached;
 
     Dcmotor *m_pMotorRight;
     Dcmotor *m_pMotorLeft;
@@ -40,6 +44,8 @@ public slots:
     void slot_setSpeed(int speed);
 signals:
 private:
+    QThread m_thread;
+    QMutex m_mutex;
 };
 
 #endif // MOBILEPLATFORM_H

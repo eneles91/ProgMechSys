@@ -7,8 +7,7 @@ Linesensor::Linesensor(int pinInput)
 {
     m_ipinInput= pinInput;
     initPins();
-
-    digitalWrite(m_ipinInput, 0);
+    pullUpDnControl(m_ipinInput, PUD_DOWN);
 }
 
 bool Linesensor::initPins()
@@ -16,7 +15,6 @@ bool Linesensor::initPins()
     bool isPin = (m_ipinInput <= 31);
     if (isPin == true)
     {
-    std::cout << "klappt" << std::endl;
         pinMode(m_ipinInput, INPUT);
         return true;
     }

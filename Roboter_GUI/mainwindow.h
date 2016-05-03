@@ -5,6 +5,8 @@
 
 #include "ui_mainwindow.h"
 #include "mobileplatform.h"
+#include <QObject>
+#include <QThread>
 
 namespace Ui {
 class MainWindow;
