@@ -105,27 +105,29 @@ void MobilePlatform::slot_setSpeed(int speed)
     }
 }
 
-
 void MobilePlatform :: slot_followLine()
 {
     endReached = true;
 
-
     while(endReached){
 
+        std::cout << "in while" << std::endl;
         //Forward motion
         if((!m_pLineSensorLeft->getStatus())&&(!m_pLineSensorRight->getStatus()))
         {
+            std::cout << "forward" << std::endl;
             moveForward();
         }
 
         //Left Motion:
         if((m_pLineSensorLeft->getStatus())&&(!m_pLineSensorRight->getStatus())){
+            std::cout << "left" << std::endl;
             moveLeft();
         }
 
         //Right motion:
         if((!m_pLineSensorLeft->getStatus())&&(m_pLineSensorRight->getStatus())){
+            std::cout << "right" << std::endl;
             moveRight();
         }
      }

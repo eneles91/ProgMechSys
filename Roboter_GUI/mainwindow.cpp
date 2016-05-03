@@ -37,5 +37,4 @@ void MainWindow::guiConnects()
     connect(ui->btn_speed, SIGNAL(valueChanged(int)), m_pMobilePlatform, SLOT(slot_setSpeed(int)));
 
     connect(ui->btn_followLine, SIGNAL(clicked()), m_pMobilePlatform, SLOT(slot_followLine()));
-
 }
