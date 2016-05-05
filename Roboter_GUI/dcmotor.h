@@ -5,6 +5,13 @@
 #include <softPwm.h>
 #include <QObject>
 
+
+/*
+ * The class Dcmotor contains the information to run a dc motor including the
+ * 3-pin-configuration and initialisation of pulse width modulation.
+ * The initialisation takes place in the constructer of the class
+ * @brief Dcmotor class
+*/
 class Dcmotor : public QObject
 {
 

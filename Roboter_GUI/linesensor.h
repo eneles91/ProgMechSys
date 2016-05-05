@@ -2,6 +2,10 @@
 #define LINESENSOR_H
 #include <wiringPi.h>
 
+/*
+ * The class Linesensor contains functions to initialize a line sensor. The
+ * initialisation of used GPIO pins takes place in the constructor of the class
+*/
 class Linesensor
 {
 public:

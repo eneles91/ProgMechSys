@@ -1,15 +1,19 @@
 #ifndef MOBILEPLATFORM_H
 #define MOBILEPLATFORM_H
 
-#include "dcmotor.h"
-#include "linesensor.h"
 #include <iostream>
 #include <QObject>
 #include <QThread>
 #include <QMutex>
 #include <QCoreApplication>
-#include <QTimer>
+#include "dcmotor.h"
+#include "linesensor.h"
 
+/*
+ * The class MobilePlatform contains all functions and variables to connect
+ * sensors and actuators of the platform
+ * @brief MobilePlatform class
+*/
 class MobilePlatform : public QObject
 {
     Q_OBJECT
@@ -22,7 +26,6 @@ public:
 
     Dcmotor *m_pMotorRight;
     Dcmotor *m_pMotorLeft;
-
     Linesensor *m_pLineSensorRight;
     Linesensor *m_pLineSensorLeft;
 
@@ -32,6 +35,8 @@ public:
     void moveLeft();
     void motionStop();
     void setSpeed(int pwmSignal);
+    void followLine();
+    void endFollowLine();
 public slots:
 
     void slot_followLine();

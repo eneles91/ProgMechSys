@@ -2,7 +2,11 @@
 #include "mainwindow.h"
 #include "mobileplatform.h"
 /*
- *Eingriffspunkt der
+ * Main function and entry point of the Software
+ * @brief main
+ * @param argc
+ * @param argv
+ * @return
 */
 
 int main(int argc, char *argv[])
