@@ -21,7 +21,7 @@ public:
     ~MainWindow();
 
     void setMobilePlatform(MobilePlatform *activePlatform);
-    void guiConnects();
+    void setGuiConnects();
 
 private:
     Ui::MainWindow *ui;

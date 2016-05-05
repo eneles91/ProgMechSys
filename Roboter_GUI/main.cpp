@@ -1,21 +1,27 @@
-#include <wiringPi.h>
 #include <QApplication>
 #include "mainwindow.h"
 #include "mobileplatform.h"
-
+/*
+ *Eingriffspunkt der
+*/
 
 int main(int argc, char *argv[])
 {
+    //Initialisierung der WiringPi-Bibliothek
     wiringPiSetup();
 
-    QApplication a(argc, argv);
-    MainWindow w;
-
-    //Pointer MobilePlatform an QApplication w übergeben, um connects zu definieren
+    //Erstellung von Objekten der Oberfläche des GUIs und der Roboterplatform
+    QApplication app(argc, argv);
+    MainWindow mainWin;
     MobilePlatform *mobilePlat = new MobilePlatform();
-    w.setMobilePlatform(mobilePlat);
-    w.guiConnects();
-    w.show();    
 
-    return a.exec();
+    //Konfiguration zwischen Klasse "MobilePlatform" und "MainWindow"
+    mainWin.setMobilePlatform(mobilePlat);
+    mainWin.setGuiConnects();
+    mainWin.show();
+
+    //Ausführung der grafischen Benutzeroberläche
+    return app.exec();
+
+
 }

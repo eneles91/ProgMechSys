@@ -18,11 +18,14 @@ MobilePlatform::MobilePlatform()
 {
     moveToThread(&m_thread);
     m_thread.start();
+
     m_pMotorRight = new Dcmotor(MOTOR_RIGHT_FORWARD, MOTOR_RIGHT_BACKWARD, MOTOR_RIGHT_PWM);
     m_pMotorLeft = new Dcmotor(MOTOR_LEFT_FORWARD, MOTOR_LEFT_BACKWARD, MOTOR_LEFT_PWM);
 
     m_pLineSensorRight = new Linesensor(LINESENSOR_RIGHT);
     m_pLineSensorLeft = new Linesensor(LINESENSOR_LEFT);
+
+    motionStop();
 }
 
 //Destruktor
@@ -115,7 +118,6 @@ void MobilePlatform :: slot_followLine()
 
     while(m_bendReached)
     {
-        std::cout << "while" << std::endl;
         //Forward motion
         if((m_pLineSensorLeft->getStatus())&&(m_pLineSensorRight->getStatus()))
         {

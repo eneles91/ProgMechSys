@@ -17,7 +17,7 @@ void MainWindow::setMobilePlatform(MobilePlatform *activePlatform)
     m_pMobilePlatform = activePlatform;
 }
 
-void MainWindow::guiConnects()
+void MainWindow::setGuiConnects()
 {   
     connect(ui->btn_forward, SIGNAL(pressed()), m_pMobilePlatform, SLOT(slot_moveForward()));
     connect(ui->btn_forward, SIGNAL(released()), m_pMobilePlatform, SLOT(slot_stopMotion()));

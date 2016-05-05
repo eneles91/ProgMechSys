@@ -67,6 +67,7 @@ public:
         btn_speed = new QSpinBox(centralWidget);
         btn_speed->setObjectName(QString::fromUtf8("btn_speed"));
         btn_speed->setGeometry(QRect(30, 80, 81, 31));
+        btn_speed->setValue(40);
         btn_followLine = new QPushButton(centralWidget);
         btn_followLine->setObjectName(QString::fromUtf8("btn_followLine"));
         btn_followLine->setGeometry(QRect(270, 270, 141, 31));
