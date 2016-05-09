@@ -1,12 +1,12 @@
 #include <QApplication>
 #include "mainwindow.h"
 #include "mobileplatform.h"
-/*
- * Main function and entry point of the Software
- * @brief main
- * @param argc
- * @param argv
- * @return ret
+/*!
+ * \file Main function and entry point of the Software
+ * \brief main
+ * \param argc
+ * \param argv
+ * \return ret
 */
 
 int main(int argc, char *argv[])
