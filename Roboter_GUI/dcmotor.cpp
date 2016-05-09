@@ -77,5 +77,4 @@ void Dcmotor::stop()
 {
     digitalWrite(m_ipinForward, 0);
     digitalWrite(m_ipinBackward, 0);
-    softPwmWrite(m_ipinSpeed, 0);
 }

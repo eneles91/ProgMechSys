@@ -6,7 +6,7 @@
  * @brief main
  * @param argc
  * @param argv
- * @return
+ * @return ret
 */
 
 int main(int argc, char *argv[])
@@ -24,8 +24,9 @@ int main(int argc, char *argv[])
     mainWin.setGuiConnects();
     mainWin.show();
 
+    int ret = app.exec();
     //Ausführung der grafischen Benutzeroberläche
-    return app.exec();
+    return ret;
 
 
 }
