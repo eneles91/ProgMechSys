@@ -10,7 +10,8 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     dcmotor.cpp \
     linesensor.cpp \
-    mobileplatform.cpp
+    mobileplatform.cpp \
+    encoder.cpp
 
 INCLUDEPATH += ../wiringPI/wiringPI
 LIBS += -L ../wiringPI/wiringPI -lwiringPi
@@ -19,7 +20,8 @@ LIBS += -L ../wiringPI/wiringPI -lwiringPi
 HEADERS  += mainwindow.h \
     dcmotor.h \
     linesensor.h \
-    mobileplatform.h
+    mobileplatform.h \
+    encoder.h
 
 DESTDIR = ./bin
 OBJECTS_DIR = ./temp

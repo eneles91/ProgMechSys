@@ -15,7 +15,7 @@ bool Linesensor::initPins()
     bool isPin = (m_ipinInput <= 31);       /*!<pin muber gets checked wheather it is in range of wiring pi library */
     if (isPin == true)
     {
-        pinMode(m_ipinInput, INPUT);        /*!<pin gets defined as input pin */
+        pinMode(m_ipinInput, INPUT);        /*!<pin is defined as input pin */
         return true;
     }
     else
