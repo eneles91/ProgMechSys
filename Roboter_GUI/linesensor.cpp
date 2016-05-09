@@ -2,30 +2,20 @@
 #include <iostream>
 
 
-/*
- * The constructer of the class "LineSensor" contains information about the GPIO pin
- * wich is connected to the Sensor to run it
- * @brief Linesensor::Linesensor
- * @param pinInput
-*/
 Linesensor::Linesensor(int pinInput)
 {
-    m_ipinInput= pinInput;
+    m_ipinInput= pinInput;                  /*!<pin number of the sensor input signal */
     initPins();
-    pullUpDnControl(m_ipinInput, PUD_DOWN);
+    pullUpDnControl(m_ipinInput, PUD_DOWN); /*!<Activates the pulldown resistor on the inputpin  */
 }
 
-/*
- * Initializes the pin that is necessary to run the line sensor
- * @brief Dcmotor::initPins
- * @return bool isPin
-*/
+
 bool Linesensor::initPins()
 {
-    bool isPin = (m_ipinInput <= 31);
+    bool isPin = (m_ipinInput <= 31);       /*!<pin muber gets checked wheather it is in range of wiring pi library */
     if (isPin == true)
     {
-        pinMode(m_ipinInput, INPUT);
+        pinMode(m_ipinInput, INPUT);        /*!<pin gets defined as input pin */
         return true;
     }
     else
@@ -34,14 +24,9 @@ bool Linesensor::initPins()
     }
 }
 
-/*
- * This function returns the status of the GPIO pin weather the platform
- * is located on light or dark ground
- * @brief Linesensor::getStatus
- * @return int checkGround
-*/
+
 int Linesensor::getStatus(){
-    int checkGround=digitalRead(m_ipinInput);
+    bool checkGround=digitalRead(m_ipinInput);
 
     return checkGround;
 }
