@@ -25,7 +25,7 @@ bool Linesensor::initPins()
 }
 
 
-int Linesensor::getStatus(){
+bool Linesensor::getStatus(){
     bool checkGround=digitalRead(m_ipinInput);
 
     return checkGround;
