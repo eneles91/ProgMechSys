@@ -1,9 +1,14 @@
 #ifndef DCMOTOR_H
 #define DCMOTOR_H
 
+#include "encoder.h"
+#include <iostream>
 #include <wiringPi.h>
 #include <softPwm.h>
 #include <QObject>
+#include <QTimer>
+#include <QTime>
+#include <iostream>
 
 
 /*!
@@ -29,7 +34,8 @@ public:
      * \param [in] pinBackward
      * \param [in] pinSpeed
     */
-    Dcmotor(int pinForward, int pinBackward, int pinSpeed);    
+    Dcmotor(int pinForward, int pinBackward, int pinSpeed, int encoderA, int EncoderB);
+    ~Dcmotor();
 
     /*! Initialization of the pulse width moulation and all pins that are necessary to run the dc motor
      * \brief Dcmotor::initPins
@@ -80,11 +86,21 @@ public slots:
     */
     void slot_stop();
 
+    void slot_showSpeed();
+
+    void slot_pidController();
 signals:
 private:
+
     int m_ipinForward;
     int m_ipinBackward;
     int m_ipinSpeed;
+    int m_ipinEncoderA;
+    int m_ipinEncoderB;
+
+    Encoder* m_pEncoder;
+
+    QTimer* p_qtTimerPidController;
 };
 
 #endif // DCMOTOR_H

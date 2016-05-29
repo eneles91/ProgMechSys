@@ -22,7 +22,7 @@ static const uint qt_meta_data_Dcmotor[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -34,6 +34,8 @@ static const uint qt_meta_data_Dcmotor[] = {
       33,   32,   32,   32, 0x0a,
       48,   32,   32,   32, 0x0a,
       64,   32,   32,   32, 0x0a,
+      76,   32,   32,   32, 0x0a,
+      93,   32,   32,   32, 0x0a,
 
        0        // eod
 };
@@ -41,7 +43,8 @@ static const uint qt_meta_data_Dcmotor[] = {
 static const char qt_meta_stringdata_Dcmotor[] = {
     "Dcmotor\0slot_setPwm(int)\0pwmVal\0\0"
     "slot_forward()\0slot_backward()\0"
-    "slot_stop()\0"
+    "slot_stop()\0slot_showSpeed()\0"
+    "slot_pidController()\0"
 };
 
 void Dcmotor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -54,6 +57,8 @@ void Dcmotor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 1: _t->slot_forward(); break;
         case 2: _t->slot_backward(); break;
         case 3: _t->slot_stop(); break;
+        case 4: _t->slot_showSpeed(); break;
+        case 5: _t->slot_pidController(); break;
         default: ;
         }
     }
@@ -91,9 +96,9 @@ int Dcmotor::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 6;
     }
     return _id;
 }

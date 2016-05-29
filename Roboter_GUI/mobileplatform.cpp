@@ -5,9 +5,15 @@
 #define MOTOR_RIGHT_BACKWARD    29
 #define MOTOR_RIGHT_PWM          27
 
+#define ENCODER_RIGHT_A         16
+#define ENCODER_RIGHT_B         15
+
 #define MOTOR_LEFT_FORWARD      25
 #define MOTOR_LEFT_BACKWARD     23
 #define MOTOR_LEFT_PWM          24
+
+#define ENCODER_LEFT_A          5
+#define ENCODER_LEFT_B          10
 
 #define LINESENSOR_RIGHT        22
 #define LINESENSOR_LEFT         21
@@ -23,8 +29,8 @@ MobilePlatform::MobilePlatform()
     m_thread.start();
 
     //Create two objects of the type Dcmotor
-    m_pMotorRight = new Dcmotor(MOTOR_RIGHT_FORWARD, MOTOR_RIGHT_BACKWARD, MOTOR_RIGHT_PWM);
-    m_pMotorLeft = new Dcmotor(MOTOR_LEFT_FORWARD, MOTOR_LEFT_BACKWARD, MOTOR_LEFT_PWM);
+    m_pMotorRight = new Dcmotor(MOTOR_RIGHT_FORWARD, MOTOR_RIGHT_BACKWARD, MOTOR_RIGHT_PWM, ENCODER_RIGHT_A, ENCODER_RIGHT_B);
+    m_pMotorLeft = new Dcmotor(MOTOR_LEFT_FORWARD, MOTOR_LEFT_BACKWARD, MOTOR_LEFT_PWM, ENCODER_LEFT_A, ENCODER_LEFT_B);
 
     //Create two objects of the type Linesensor
     m_pLineSensorRight = new Linesensor(LINESENSOR_RIGHT);
