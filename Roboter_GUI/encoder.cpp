@@ -15,8 +15,8 @@ Encoder::Encoder(int pinEncoderA, int pinEncoderB)
     m_iCurrentTicks = 0;
 
     moveToThread(&m_encoderThread);
+    connect(this, SIGNAL(sgn_StartCounting()), this, SLOT(countTicks()));
     m_encoderThread.start();
-
 }
 
 Encoder::~Encoder()
@@ -35,7 +35,7 @@ void Encoder::startCount()
     m_qtPreviousTime = QTime::currentTime();
     isStopped = false;
     m_mutex.unlock();
-    countTicks();
+    emit sgn_StartCounting();
 }
 
 void Encoder::stopCount()
@@ -81,6 +81,6 @@ void Encoder::countTicks()
             m_iCurrentTicks++;
             m_iOldStatusPinB = m_iStatusPinB;
             m_mutex.unlock();
-        }
+        }        
     }
 }

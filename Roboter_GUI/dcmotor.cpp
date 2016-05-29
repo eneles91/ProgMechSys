@@ -1,6 +1,6 @@
 #include "dcmotor.h"
 
-#define PID_LOOP_RATE 20
+#define PID_LOOP_RATE 1000
 
 #define PID_P_GAIN 1
 #define PID_I_GAIN 0
