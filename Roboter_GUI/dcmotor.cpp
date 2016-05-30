@@ -1,8 +1,8 @@
 #include "dcmotor.h"
 
-#define PID_LOOP_RATE 1000
+#define PID_LOOP_RATE 10
 
-#define PID_P_GAIN 1
+#define PID_P_GAIN 200
 #define PID_I_GAIN 0
 #define PID_D_GAIN 0
 
@@ -13,6 +13,7 @@ Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA,
     m_ipinSpeed = pinSpeed;
     m_ipinEncoderA = pinEncoderA;
     m_ipinEncoderB = pinEncoderB;
+    m_fprevErrorSpeed = 0;
 
     initPins();
 
@@ -20,7 +21,7 @@ Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA,
     m_pEncoder->startCount();
 
     p_qtTimerPidController = new QTimer();
-    connect(p_qtTimerPidController, SIGNAL(timeout()), this, SLOT(slot_showSpeed()));
+    connect(p_qtTimerPidController, SIGNAL(timeout()), this, SLOT(slot_pidController()));
     p_qtTimerPidController->start(PID_LOOP_RATE);
 }
 
@@ -91,11 +92,30 @@ void Dcmotor::slot_stop()
 
 void Dcmotor::slot_pidController()
 {
+    int output_Pwm;
+    double currentSpeed;
+    double targetSpeed;
+    double errorSpeed;
+    double output;
+    double deltaT;
+    currentSpeed = m_pEncoder->getSpeed(&deltaT);
+    targetSpeed = m_ftargetSpeed;
+    errorSpeed = targetSpeed - currentSpeed;
 
+    output = PID_P_GAIN * errorSpeed + PID_I_GAIN * deltaT * (errorSpeed) + PID_D_GAIN / deltaT * (errorSpeed - m_fprevErrorSpeed);
+    m_fprevErrorSpeed = errorSpeed;
+    output_Pwm = (int)output;
+    setPwm(output_Pwm);
+    std::cout << currentSpeed << std::endl;
 }
 
 void Dcmotor::slot_showSpeed()
 {
-    //float* p_deltaT;
-    std::cout << m_pEncoder->getSpeed() << std::endl;
+   double* p_deltaT;
+   std::cout << m_pEncoder->getSpeed(p_deltaT) << std::endl;
+}
+
+void Dcmotor::setSpeed(double targetSpeed)
+{
+    m_ftargetSpeed = targetSpeed;
 }

@@ -13,7 +13,7 @@
 #define MOTOR_LEFT_PWM          24
 
 #define ENCODER_LEFT_A          5
-#define ENCODER_LEFT_B          10
+#define ENCODER_LEFT_B          4
 
 #define LINESENSOR_RIGHT        22
 #define LINESENSOR_LEFT         21
@@ -111,13 +111,10 @@ void MobilePlatform::motionStop()
  * Function to set the platforms speed to a pwm value to 0 - 255
  * @brief MobilePlatform::setSpeed()
 */
-void MobilePlatform::setSpeed(int pwmSignal)
+void MobilePlatform::setSpeed(double speedSignal)
 {
-    if (pwmSignal>=0 && pwmSignal <= 255)
-    {
-        m_pMotorRight->setPwm(pwmSignal);
-        m_pMotorLeft->setPwm(pwmSignal);
-    }
+        m_pMotorRight->setSpeed(speedSignal);
+        m_pMotorLeft->setSpeed(speedSignal);
 }
 
 /*
@@ -210,7 +207,7 @@ void MobilePlatform::slot_stopMotion()
  * Slot wrapper for MobilePlatform::setSpeed()
  * @brief MobilePlatform::slot_setSpeed()
 */
-void MobilePlatform::slot_setSpeed(int speed)
+void MobilePlatform::slot_setSpeed(double speed)
 {
     setSpeed(speed);
 }

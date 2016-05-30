@@ -92,19 +92,6 @@
      <string>Speed</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="btn_speed">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>80</y>
-      <width>81</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>40</number>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btn_followLine">
     <property name="geometry">
      <rect>
@@ -116,6 +103,16 @@
     </property>
     <property name="text">
      <string>Follow Line</string>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="btn_speed">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
     </property>
    </widget>
   </widget>

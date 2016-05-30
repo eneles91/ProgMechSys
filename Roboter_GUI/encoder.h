@@ -18,7 +18,7 @@ public:
     Encoder(int pinEncoderA, int pinEncoderB);
     ~Encoder();
 
-    float getSpeed();
+    float getSpeed(double* p_deltaT);
 
     void startCount();
     void stopCount();

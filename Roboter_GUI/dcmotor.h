@@ -64,6 +64,10 @@ public:
     */
     void stop();
 
+    void setSpeed(double targetSpeed);
+
+    float m_ftargetSpeed;
+
 public slots:
 
     /*! Slot wrapper for Dcmotor::setPwm()
@@ -97,6 +101,7 @@ private:
     int m_ipinSpeed;
     int m_ipinEncoderA;
     int m_ipinEncoderB;
+    double m_fprevErrorSpeed;
 
     Encoder* m_pEncoder;
 

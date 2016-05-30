@@ -34,7 +34,7 @@ public:
     void moveRight();
     void moveLeft();
     void motionStop();
-    void setSpeed(int pwmSignal);
+    void setSpeed(double speedSignal);
     void followLine();
     void endFollowLine();
 public slots:
@@ -46,7 +46,7 @@ public slots:
     void slot_moveRight();
     void slot_moveLeft();
     void slot_stopMotion();
-    void slot_setSpeed(int speed);
+    void slot_setSpeed(double speed);
 signals:
 private:
     QThread m_thread;

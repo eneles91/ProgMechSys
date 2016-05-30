@@ -1,5 +1,7 @@
 #include "encoder.h"
 
+#define PI 3.1416
+
 Encoder::Encoder(int pinEncoderA, int pinEncoderB)
 {
     m_iPinA = pinEncoderA;
@@ -45,7 +47,7 @@ void Encoder::stopCount()
     m_mutex.unlock();
 }
 
-float Encoder::getSpeed()
+float Encoder::getSpeed(double* p_deltaT)
 {
     m_mutex.lock();
     float deltaT = m_qtPreviousTime.msecsTo(QTime::currentTime());
@@ -54,9 +56,9 @@ float Encoder::getSpeed()
     m_iCurrentTicks  = 0;
     m_mutex.unlock();
 
-    //*p_deltaT = (float)deltaT/1000;
+    *p_deltaT = (float)deltaT/1000;
 
-    float currentSpeed = (ticks * 0.063) / (1440 * deltaT);
+    float currentSpeed = (ticks * 0.063 * PI * 1000) / (1440 * deltaT);
     return currentSpeed;
 }
 
@@ -81,6 +83,6 @@ void Encoder::countTicks()
             m_iCurrentTicks++;
             m_iOldStatusPinB = m_iStatusPinB;
             m_mutex.unlock();
-        }        
+        }
     }
 }

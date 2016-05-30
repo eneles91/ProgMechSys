@@ -37,7 +37,7 @@ static const uint qt_meta_data_MobilePlatform[] = {
       94,   33,   33,   33, 0x0a,
      111,   33,   33,   33, 0x0a,
      127,   33,   33,   33, 0x0a,
-     145,  164,   33,   33, 0x0a,
+     145,  167,   33,   33, 0x0a,
 
        0        // eod
 };
@@ -47,7 +47,7 @@ static const char qt_meta_stringdata_MobilePlatform[] = {
     "slot_endFollowLine()\0slot_moveForward()\0"
     "slot_moveBackward()\0slot_moveRight()\0"
     "slot_moveLeft()\0slot_stopMotion()\0"
-    "slot_setSpeed(int)\0speed\0"
+    "slot_setSpeed(double)\0speed\0"
 };
 
 void MobilePlatform::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -63,7 +63,7 @@ void MobilePlatform::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 4: _t->slot_moveRight(); break;
         case 5: _t->slot_moveLeft(); break;
         case 6: _t->slot_stopMotion(); break;
-        case 7: _t->slot_setSpeed((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 7: _t->slot_setSpeed((*reinterpret_cast< double(*)>(_a[1]))); break;
         default: ;
         }
     }

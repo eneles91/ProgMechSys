@@ -13,11 +13,11 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QDoubleSpinBox>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QMainWindow>
 #include <QtGui/QPushButton>
-#include <QtGui/QSpinBox>
 #include <QtGui/QStatusBar>
 #include <QtGui/QToolBar>
 #include <QtGui/QWidget>
@@ -34,8 +34,8 @@ public:
     QPushButton *btn_left;
     QPushButton *btn_stop;
     QLabel *label;
-    QSpinBox *btn_speed;
     QPushButton *btn_followLine;
+    QDoubleSpinBox *btn_speed;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -64,13 +64,12 @@ public:
         label = new QLabel(centralWidget);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(50, 50, 68, 21));
-        btn_speed = new QSpinBox(centralWidget);
-        btn_speed->setObjectName(QString::fromUtf8("btn_speed"));
-        btn_speed->setGeometry(QRect(30, 80, 81, 31));
-        btn_speed->setValue(40);
         btn_followLine = new QPushButton(centralWidget);
         btn_followLine->setObjectName(QString::fromUtf8("btn_followLine"));
         btn_followLine->setGeometry(QRect(270, 270, 141, 31));
+        btn_speed = new QDoubleSpinBox(centralWidget);
+        btn_speed->setObjectName(QString::fromUtf8("btn_speed"));
+        btn_speed->setGeometry(QRect(20, 80, 121, 31));
         MainWindow->setCentralWidget(centralWidget);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
