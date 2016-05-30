@@ -8,6 +8,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QTime>
+#include <QString>
 #include <iostream>
 
 
@@ -68,6 +69,8 @@ public:
 
     float m_ftargetSpeed;
 
+    QTimer* p_qt_display;
+
 public slots:
 
     /*! Slot wrapper for Dcmotor::setPwm()
@@ -93,15 +96,30 @@ public slots:
     void slot_showSpeed();
 
     void slot_pidController();
-signals:
-private:
 
+    void slot_getDisplayInformation();
+
+    void slot_setPGain(double pGain);
+
+    void slot_setIGain(double iGain);
+
+    void slot_setDGain(double dGain);
+
+signals:
+    void sgnSpeed(double);
+    void sgnErrorSpeed(double);
+
+private:
     int m_ipinForward;
     int m_ipinBackward;
     int m_ipinSpeed;
     int m_ipinEncoderA;
     int m_ipinEncoderB;
     double m_fprevErrorSpeed;
+    double m_fprevSpeed;
+    double m_dPGain;
+    double m_dIGain;
+    double m_dDGain;
 
     Encoder* m_pEncoder;
 

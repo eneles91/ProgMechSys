@@ -47,6 +47,7 @@ public slots:
     void slot_moveLeft();
     void slot_stopMotion();
     void slot_setSpeed(double speed);
+
 signals:
 private:
     QThread m_thread;

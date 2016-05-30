@@ -29,8 +29,9 @@ MobilePlatform::MobilePlatform()
     m_thread.start();
 
     //Create two objects of the type Dcmotor
-    m_pMotorRight = new Dcmotor(MOTOR_RIGHT_FORWARD, MOTOR_RIGHT_BACKWARD, MOTOR_RIGHT_PWM, ENCODER_RIGHT_A, ENCODER_RIGHT_B);
     m_pMotorLeft = new Dcmotor(MOTOR_LEFT_FORWARD, MOTOR_LEFT_BACKWARD, MOTOR_LEFT_PWM, ENCODER_LEFT_A, ENCODER_LEFT_B);
+    m_pMotorRight = new Dcmotor(MOTOR_RIGHT_FORWARD, MOTOR_RIGHT_BACKWARD, MOTOR_RIGHT_PWM, ENCODER_RIGHT_A, ENCODER_RIGHT_B);
+
 
     //Create two objects of the type Linesensor
     m_pLineSensorRight = new Linesensor(LINESENSOR_RIGHT);

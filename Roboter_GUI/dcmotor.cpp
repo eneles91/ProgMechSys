@@ -1,10 +1,7 @@
 #include "dcmotor.h"
 
 #define PID_LOOP_RATE 10
-
-#define PID_P_GAIN 200
-#define PID_I_GAIN 0
-#define PID_D_GAIN 0
+#define DISPLAY_LOOP_RATE 200
 
 Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA, int pinEncoderB)
 {
@@ -19,6 +16,10 @@ Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA,
 
     m_pEncoder = new Encoder(m_ipinEncoderA, m_ipinEncoderB);
     m_pEncoder->startCount();
+
+    p_qt_display = new QTimer();
+    connect(p_qt_display, SIGNAL(timeout()), this, SLOT(slot_getDisplayInformation()));
+    p_qt_display->start(DISPLAY_LOOP_RATE);
 
     p_qtTimerPidController = new QTimer();
     connect(p_qtTimerPidController, SIGNAL(timeout()), this, SLOT(slot_pidController()));
@@ -102,11 +103,13 @@ void Dcmotor::slot_pidController()
     targetSpeed = m_ftargetSpeed;
     errorSpeed = targetSpeed - currentSpeed;
 
-    output = PID_P_GAIN * errorSpeed + PID_I_GAIN * deltaT * (errorSpeed) + PID_D_GAIN / deltaT * (errorSpeed - m_fprevErrorSpeed);
+    output = m_dPGain * errorSpeed + m_dIGain * deltaT * (errorSpeed) + m_dDGain / deltaT * (errorSpeed - m_fprevErrorSpeed);
     m_fprevErrorSpeed = errorSpeed;
+    m_fprevSpeed = currentSpeed;
     output_Pwm = (int)output;
     setPwm(output_Pwm);
-    std::cout << currentSpeed << std::endl;
+
+   // std::cout << currentSpeed << std::endl;
 }
 
 void Dcmotor::slot_showSpeed()
@@ -118,4 +121,25 @@ void Dcmotor::slot_showSpeed()
 void Dcmotor::setSpeed(double targetSpeed)
 {
     m_ftargetSpeed = targetSpeed;
+}
+
+void Dcmotor::slot_getDisplayInformation()
+{
+    emit sgnSpeed(m_fprevSpeed);
+    emit sgnErrorSpeed(m_fprevErrorSpeed);
+}
+
+void Dcmotor::slot_setPGain(double pGain)
+{
+    m_dPGain = pGain;
+}
+
+void Dcmotor::slot_setIGain(double iGain)
+{
+    m_dIGain = iGain;
+}
+
+void Dcmotor::slot_setDGain(double dGain)
+{
+    m_dDGain = dGain;
 }

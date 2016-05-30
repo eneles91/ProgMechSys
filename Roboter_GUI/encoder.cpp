@@ -57,6 +57,7 @@ float Encoder::getSpeed(double* p_deltaT)
     m_mutex.unlock();
 
     *p_deltaT = (float)deltaT/1000;
+    //std::cout << "" << std::endl;
 
     float currentSpeed = (ticks * 0.063 * PI * 1000) / (1440 * deltaT);
     return currentSpeed;
@@ -77,7 +78,7 @@ void Encoder::countTicks()
             m_iOldStatusPinA = m_iStatusPinA;
             m_mutex.unlock();
         }
-        else if (m_iStatusPinB != m_iOldStatusPinB)
+        if (m_iStatusPinB != m_iOldStatusPinB)
         {
             m_mutex.lock();
             m_iCurrentTicks++;
