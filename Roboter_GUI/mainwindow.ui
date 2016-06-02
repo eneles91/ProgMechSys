@@ -843,12 +843,12 @@ background-color: rgb(255, 255, 255);</string>
      <rect>
       <x>430</x>
       <y>90</y>
-      <width>91</width>
+      <width>81</width>
       <height>31</height>
      </rect>
     </property>
     <property name="decimals">
-     <number>4</number>
+     <number>3</number>
     </property>
     <property name="maximum">
      <double>4000.000000000000000</double>
@@ -857,7 +857,7 @@ background-color: rgb(255, 255, 255);</string>
      <double>0.000100000000000</double>
     </property>
     <property name="value">
-     <double>0.000500000000000</double>
+     <double>80.000000000000000</double>
     </property>
    </widget>
    <widget class="QDoubleSpinBox" name="iGain_r">
@@ -868,6 +868,9 @@ background-color: rgb(255, 255, 255);</string>
       <width>71</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="value">
+     <double>3.000000000000000</double>
     </property>
    </widget>
    <widget class="QDoubleSpinBox" name="dGain_r">
@@ -895,12 +898,12 @@ background-color: rgb(255, 255, 255);</string>
      <rect>
       <x>430</x>
       <y>130</y>
-      <width>71</width>
+      <width>81</width>
       <height>31</height>
      </rect>
     </property>
     <property name="decimals">
-     <number>4</number>
+     <number>3</number>
     </property>
     <property name="maximum">
      <double>4000.000000000000000</double>
@@ -909,7 +912,7 @@ background-color: rgb(255, 255, 255);</string>
      <double>0.000100000000000</double>
     </property>
     <property name="value">
-     <double>0.000500000000000</double>
+     <double>80.000000000000000</double>
     </property>
    </widget>
    <widget class="QDoubleSpinBox" name="iGain_l">
@@ -920,6 +923,9 @@ background-color: rgb(255, 255, 255);</string>
       <width>71</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="value">
+     <double>3.000000000000000</double>
     </property>
    </widget>
    <widget class="QLabel" name="label_10">

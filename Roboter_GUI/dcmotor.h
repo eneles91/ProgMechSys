@@ -121,6 +121,8 @@ private:
     double m_dDGain;
     double m_fPidIntegral;
 
+    bool m_bIsStop;
+
     Encoder* m_pEncoder;
 
     QTimer* p_qtTimerPidController;

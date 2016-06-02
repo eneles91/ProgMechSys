@@ -6,6 +6,7 @@
 
 Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA, int pinEncoderB)
 {
+    m_bIsStop = false;
     m_ipinBackward = pinBackward;
     m_ipinForward = pinForward;
     m_ipinSpeed = pinSpeed;
@@ -15,8 +16,8 @@ Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA,
     m_fprevSpeed = 0;
     m_fprevOutput = 0;
     m_fPidIntegral = 0;
-    m_dPGain = 1;
-    m_dIGain = 0;
+    m_dPGain = 80;
+    m_dIGain = 3;
     m_dDGain = 0;
 
     initPins();
@@ -70,18 +71,21 @@ void Dcmotor::setPwm(int pwmVal)
 
 void Dcmotor::forward()
 {
+    m_bIsStop = false;
     digitalWrite(m_ipinForward, 1);
     digitalWrite(m_ipinBackward, 0);
 }
 
 void Dcmotor::backward()
 {
+    m_bIsStop = false;
     digitalWrite(m_ipinForward, 0);
     digitalWrite(m_ipinBackward, 1);
 }
 
 void Dcmotor::stop()
 {
+    m_bIsStop = true;
     digitalWrite(m_ipinForward, 0);
     digitalWrite(m_ipinBackward, 0);
     m_fprevErrorSpeed = 0;
@@ -120,26 +124,29 @@ void Dcmotor::slot_stop()
 
 void Dcmotor::slot_pidController()
 {
-    int output_Pwm;
-    double currentSpeed;
-    double targetSpeed;
-    double errorSpeed;
-    double output;
-    double deltaT;
-    currentSpeed = m_pEncoder->getSpeed(&deltaT);
-    targetSpeed = m_ftargetSpeed;
-    errorSpeed = targetSpeed - currentSpeed;
-    m_fPidIntegral = m_fPidIntegral + errorSpeed;
+    if (!m_bIsStop)
+    {
+        int output_Pwm;
+        double currentSpeed;
+        double targetSpeed;
+        double errorSpeed;
+        double output;
+        double deltaT;
+        currentSpeed = m_pEncoder->getSpeed(&deltaT);
+        targetSpeed = m_ftargetSpeed;
+        errorSpeed = targetSpeed - currentSpeed;
+        m_fPidIntegral = m_fPidIntegral + errorSpeed;
 
-    output = m_fprevOutput + (m_dPGain * errorSpeed);// + m_dIGain * deltaT * m_fPidIntegral + m_dDGain / deltaT * (errorSpeed - m_fprevErrorSpeed));
-    output_Pwm = (int)output;
-    setPwm(output_Pwm);
+        output = m_fprevOutput + (m_dPGain * errorSpeed);// + m_dIGain * deltaT * m_fPidIntegral + m_dDGain / deltaT * (errorSpeed - m_fprevErrorSpeed));
+        output_Pwm = (int)output;
+        setPwm(output_Pwm);
 
-    m_fprevErrorSpeed = errorSpeed;
-    m_fprevOutput = output;
-    m_fprevSpeed = currentSpeed;
+        m_fprevErrorSpeed = errorSpeed;
+        m_fprevOutput = output;
+        m_fprevSpeed = currentSpeed;
 
-    //std::cout << m_dPGain << std::endl;
+        //std::cout << m_dPGain << std::endl;
+    }
 }
 
 
