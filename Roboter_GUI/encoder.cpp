@@ -85,5 +85,6 @@ void Encoder::countTicks()
             m_iOldStatusPinB = m_iStatusPinB;
             m_mutex.unlock();
         }
+        //std::cout << m_iCurrentTicks << std::endl;
     }
 }

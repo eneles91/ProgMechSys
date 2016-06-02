@@ -67,7 +67,7 @@ public:
 
     void setSpeed(double targetSpeed);
 
-    float m_ftargetSpeed;
+    double m_ftargetSpeed;
 
     QTimer* p_qt_display;
 
@@ -93,8 +93,6 @@ public slots:
     */
     void slot_stop();
 
-    void slot_showSpeed();
-
     void slot_pidController();
 
     void slot_getDisplayInformation();
@@ -116,10 +114,12 @@ private:
     int m_ipinEncoderA;
     int m_ipinEncoderB;
     double m_fprevErrorSpeed;
+    double m_fprevOutput;
     double m_fprevSpeed;
     double m_dPGain;
     double m_dIGain;
     double m_dDGain;
+    double m_fPidIntegral;
 
     Encoder* m_pEncoder;
 

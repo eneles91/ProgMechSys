@@ -22,7 +22,7 @@ static const uint qt_meta_data_Dcmotor[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -39,11 +39,10 @@ static const uint qt_meta_data_Dcmotor[] = {
       87,   25,   25,   25, 0x0a,
      103,   25,   25,   25, 0x0a,
      115,   25,   25,   25, 0x0a,
-     132,   25,   25,   25, 0x0a,
-     153,   25,   25,   25, 0x0a,
-     182,  204,   25,   25, 0x0a,
-     210,  232,   25,   25, 0x0a,
-     238,  260,   25,   25, 0x0a,
+     136,   25,   25,   25, 0x0a,
+     165,  187,   25,   25, 0x0a,
+     193,  215,   25,   25, 0x0a,
+     221,  243,   25,   25, 0x0a,
 
        0        // eod
 };
@@ -52,8 +51,8 @@ static const char qt_meta_stringdata_Dcmotor[] = {
     "Dcmotor\0sgnSpeed(double)\0\0"
     "sgnErrorSpeed(double)\0slot_setPwm(int)\0"
     "pwmVal\0slot_forward()\0slot_backward()\0"
-    "slot_stop()\0slot_showSpeed()\0"
-    "slot_pidController()\0slot_getDisplayInformation()\0"
+    "slot_stop()\0slot_pidController()\0"
+    "slot_getDisplayInformation()\0"
     "slot_setPGain(double)\0pGain\0"
     "slot_setIGain(double)\0iGain\0"
     "slot_setDGain(double)\0dGain\0"
@@ -71,12 +70,11 @@ void Dcmotor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 3: _t->slot_forward(); break;
         case 4: _t->slot_backward(); break;
         case 5: _t->slot_stop(); break;
-        case 6: _t->slot_showSpeed(); break;
-        case 7: _t->slot_pidController(); break;
-        case 8: _t->slot_getDisplayInformation(); break;
-        case 9: _t->slot_setPGain((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 10: _t->slot_setIGain((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 11: _t->slot_setDGain((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 6: _t->slot_pidController(); break;
+        case 7: _t->slot_getDisplayInformation(); break;
+        case 8: _t->slot_setPGain((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 9: _t->slot_setIGain((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 10: _t->slot_setDGain((*reinterpret_cast< double(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -114,9 +112,9 @@ int Dcmotor::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 11;
     }
     return _id;
 }

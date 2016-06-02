@@ -214,9 +214,11 @@ public:
         label_9->setGeometry(QRect(650, 60, 68, 21));
         pGain_r = new QDoubleSpinBox(centralWidget);
         pGain_r->setObjectName(QString::fromUtf8("pGain_r"));
-        pGain_r->setGeometry(QRect(430, 90, 71, 31));
-        pGain_r->setMaximum(1000);
-        pGain_r->setValue(300);
+        pGain_r->setGeometry(QRect(430, 90, 91, 31));
+        pGain_r->setDecimals(4);
+        pGain_r->setMaximum(4000);
+        pGain_r->setSingleStep(0.0001);
+        pGain_r->setValue(0.0005);
         iGain_r = new QDoubleSpinBox(centralWidget);
         iGain_r->setObjectName(QString::fromUtf8("iGain_r"));
         iGain_r->setGeometry(QRect(540, 90, 71, 31));
@@ -229,8 +231,10 @@ public:
         pGain_l = new QDoubleSpinBox(centralWidget);
         pGain_l->setObjectName(QString::fromUtf8("pGain_l"));
         pGain_l->setGeometry(QRect(430, 130, 71, 31));
-        pGain_l->setMaximum(1000);
-        pGain_l->setValue(300);
+        pGain_l->setDecimals(4);
+        pGain_l->setMaximum(4000);
+        pGain_l->setSingleStep(0.0001);
+        pGain_l->setValue(0.0005);
         iGain_l = new QDoubleSpinBox(centralWidget);
         iGain_l->setObjectName(QString::fromUtf8("iGain_l"));
         iGain_l->setGeometry(QRect(540, 130, 71, 31));

@@ -1,6 +1,7 @@
 #include "dcmotor.h"
 
-#define PID_LOOP_RATE 10
+#define PID_LOOP_RATE 100
+//#define PID_LOOP_RATE 500
 #define DISPLAY_LOOP_RATE 200
 
 Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA, int pinEncoderB)
@@ -11,6 +12,12 @@ Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA,
     m_ipinEncoderA = pinEncoderA;
     m_ipinEncoderB = pinEncoderB;
     m_fprevErrorSpeed = 0;
+    m_fprevSpeed = 0;
+    m_fprevOutput = 0;
+    m_fPidIntegral = 0;
+    m_dPGain = 1;
+    m_dIGain = 0;
+    m_dDGain = 0;
 
     initPins();
 
@@ -50,7 +57,15 @@ bool Dcmotor::initPins()
 
 void Dcmotor::setPwm(int pwmVal)
 {
-      softPwmWrite(m_ipinSpeed, pwmVal);
+    if(pwmVal>160)
+    {
+        pwmVal = 160;
+    }
+    else if(pwmVal < 0)
+    {
+        pwmVal = 0;
+    }
+    softPwmWrite(m_ipinSpeed, pwmVal);
 }
 
 void Dcmotor::forward()
@@ -69,10 +84,22 @@ void Dcmotor::stop()
 {
     digitalWrite(m_ipinForward, 0);
     digitalWrite(m_ipinBackward, 0);
+    m_fprevErrorSpeed = 0;
+    m_fprevSpeed = 0;
+    m_fprevOutput = 0;
+    m_fPidIntegral = 0;
 }
 
 void Dcmotor::slot_setPwm(int pwmVal)
 {
+    if(pwmVal>255)
+    {
+        pwmVal = 255;
+    }
+    else if(pwmVal < 0)
+    {
+        pwmVal = 0;
+    }
     setPwm(pwmVal);
 }
 
@@ -102,21 +129,19 @@ void Dcmotor::slot_pidController()
     currentSpeed = m_pEncoder->getSpeed(&deltaT);
     targetSpeed = m_ftargetSpeed;
     errorSpeed = targetSpeed - currentSpeed;
+    m_fPidIntegral = m_fPidIntegral + errorSpeed;
 
-    output = m_dPGain * errorSpeed + m_dIGain * deltaT * (errorSpeed) + m_dDGain / deltaT * (errorSpeed - m_fprevErrorSpeed);
-    m_fprevErrorSpeed = errorSpeed;
-    m_fprevSpeed = currentSpeed;
+    output = m_fprevOutput + (m_dPGain * errorSpeed);// + m_dIGain * deltaT * m_fPidIntegral + m_dDGain / deltaT * (errorSpeed - m_fprevErrorSpeed));
     output_Pwm = (int)output;
     setPwm(output_Pwm);
 
-   // std::cout << currentSpeed << std::endl;
+    m_fprevErrorSpeed = errorSpeed;
+    m_fprevOutput = output;
+    m_fprevSpeed = currentSpeed;
+
+    //std::cout << m_dPGain << std::endl;
 }
 
-void Dcmotor::slot_showSpeed()
-{
-   double* p_deltaT;
-   std::cout << m_pEncoder->getSpeed(p_deltaT) << std::endl;
-}
 
 void Dcmotor::setSpeed(double targetSpeed)
 {
