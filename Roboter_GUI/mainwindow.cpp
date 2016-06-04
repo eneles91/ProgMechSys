@@ -51,6 +51,8 @@ void MainWindow::setGuiConnects()
     connect(ui->iGain_l, SIGNAL(valueChanged(double)), m_pMobilePlatform->m_pMotorLeft, SLOT(slot_setIGain(double)));
     connect(ui->dGain_l, SIGNAL(valueChanged(double)), m_pMobilePlatform->m_pMotorLeft, SLOT(slot_setDGain(double)));
 
-
+    connect(ui->btn_speed, SIGNAL(valueChanged(double)), m_pMobilePlatform, SLOT(slot_setCircleSpeed(double)));
+    connect(ui->btn_driveCircle, SIGNAL(clicked()), m_pMobilePlatform, SLOT(slot_drawCircle()));
+    connect(ui->btn_radius, SIGNAL(valueChanged(double)), m_pMobilePlatform, SLOT(slot_setCircleRadius(double)));
 }
 

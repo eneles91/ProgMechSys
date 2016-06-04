@@ -22,7 +22,7 @@ static const uint qt_meta_data_MobilePlatform[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -38,6 +38,9 @@ static const uint qt_meta_data_MobilePlatform[] = {
      111,   33,   33,   33, 0x0a,
      127,   33,   33,   33, 0x0a,
      145,  167,   33,   33, 0x0a,
+     173,  201,   33,   33, 0x0a,
+     213,  242,   33,   33, 0x0a,
+     255,   33,   33,   33, 0x0a,
 
        0        // eod
 };
@@ -48,6 +51,9 @@ static const char qt_meta_stringdata_MobilePlatform[] = {
     "slot_moveBackward()\0slot_moveRight()\0"
     "slot_moveLeft()\0slot_stopMotion()\0"
     "slot_setSpeed(double)\0speed\0"
+    "slot_setCircleSpeed(double)\0circleSpeed\0"
+    "slot_setCircleRadius(double)\0circleRadius\0"
+    "slot_drawCircle()\0"
 };
 
 void MobilePlatform::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -64,6 +70,9 @@ void MobilePlatform::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 5: _t->slot_moveLeft(); break;
         case 6: _t->slot_stopMotion(); break;
         case 7: _t->slot_setSpeed((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 8: _t->slot_setCircleSpeed((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 9: _t->slot_setCircleRadius((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 10: _t->slot_drawCircle(); break;
         default: ;
         }
     }
@@ -101,9 +110,9 @@ int MobilePlatform::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 11;
     }
     return _id;
 }

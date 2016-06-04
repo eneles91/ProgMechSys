@@ -4,6 +4,7 @@
 #include <iostream>
 #include <QObject>
 #include <QThread>
+#include <QTime>
 #include <QMutex>
 #include <QCoreApplication>
 #include "dcmotor.h"
@@ -23,6 +24,8 @@ public:
     ~MobilePlatform();
 
     bool m_bendReached;
+    double m_iCircleRadius;
+    double m_dCircleSpeed;
 
     Dcmotor *m_pMotorRight;
     Dcmotor *m_pMotorLeft;
@@ -37,6 +40,7 @@ public:
     void setSpeed(double speedSignal);
     void followLine();
     void endFollowLine();
+    void drawCircle();
 public slots:
 
     void slot_followLine();
@@ -47,9 +51,14 @@ public slots:
     void slot_moveLeft();
     void slot_stopMotion();
     void slot_setSpeed(double speed);
+    void slot_setCircleSpeed(double circleSpeed);
+    void slot_setCircleRadius(double circleRadius);
+    void slot_drawCircle();
 
 signals:
 private:
+    
+    QTime m_qtPreviousTime;
     QThread m_thread;
     QMutex m_mutex;
 };

@@ -57,6 +57,10 @@ public:
     QDoubleSpinBox *iGain_l;
     QLabel *label_10;
     QLabel *label_11;
+    QLabel *label_12;
+    QDoubleSpinBox *btn_radius;
+    QLabel *label_13;
+    QPushButton *btn_driveCircle;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -84,16 +88,16 @@ public:
         btn_stop->setGeometry(QRect(140, 130, 101, 31));
         label = new QLabel(centralWidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(150, 190, 68, 21));
+        label->setGeometry(QRect(40, 200, 68, 21));
         btn_followLine = new QPushButton(centralWidget);
         btn_followLine->setObjectName(QString::fromUtf8("btn_followLine"));
-        btn_followLine->setGeometry(QRect(120, 280, 141, 31));
+        btn_followLine->setGeometry(QRect(10, 290, 141, 31));
         btn_speed = new QDoubleSpinBox(centralWidget);
         btn_speed->setObjectName(QString::fromUtf8("btn_speed"));
-        btn_speed->setGeometry(QRect(120, 220, 121, 31));
+        btn_speed->setGeometry(QRect(10, 230, 121, 31));
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(250, 220, 31, 21));
+        label_2->setGeometry(QRect(140, 230, 31, 21));
         indic_speed_left = new QLCDNumber(centralWidget);
         indic_speed_left->setObjectName(QString::fromUtf8("indic_speed_left"));
         indic_speed_left->setGeometry(QRect(600, 210, 91, 23));
@@ -246,6 +250,20 @@ public:
         label_11 = new QLabel(centralWidget);
         label_11->setObjectName(QString::fromUtf8("label_11"));
         label_11->setGeometry(QRect(380, 130, 41, 21));
+        label_12 = new QLabel(centralWidget);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+        label_12->setGeometry(QRect(290, 200, 91, 21));
+        btn_radius = new QDoubleSpinBox(centralWidget);
+        btn_radius->setObjectName(QString::fromUtf8("btn_radius"));
+        btn_radius->setGeometry(QRect(300, 230, 51, 31));
+        btn_radius->setDecimals(0);
+        btn_radius->setValue(17);
+        label_13 = new QLabel(centralWidget);
+        label_13->setObjectName(QString::fromUtf8("label_13"));
+        label_13->setGeometry(QRect(360, 230, 31, 21));
+        btn_driveCircle = new QPushButton(centralWidget);
+        btn_driveCircle->setObjectName(QString::fromUtf8("btn_driveCircle"));
+        btn_driveCircle->setGeometry(QRect(260, 290, 141, 31));
         MainWindow->setCentralWidget(centralWidget);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -279,6 +297,9 @@ public:
         label_9->setText(QApplication::translate("MainWindow", "D_Gain", 0, QApplication::UnicodeUTF8));
         label_10->setText(QApplication::translate("MainWindow", "Right:", 0, QApplication::UnicodeUTF8));
         label_11->setText(QApplication::translate("MainWindow", "Left:", 0, QApplication::UnicodeUTF8));
+        label_12->setText(QApplication::translate("MainWindow", "Drive Circle", 0, QApplication::UnicodeUTF8));
+        label_13->setText(QApplication::translate("MainWindow", "cm", 0, QApplication::UnicodeUTF8));
+        btn_driveCircle->setText(QApplication::translate("MainWindow", "Drive Circle", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

@@ -24,6 +24,9 @@
 */
 MobilePlatform::MobilePlatform()
 {
+    m_iCircleRadius = 17;
+    m_dCircleSpeed = 0.3;
+
     //Initialize and start thread for the class MobilePlatform
     moveToThread(&m_thread);
     m_thread.start();
@@ -39,6 +42,7 @@ MobilePlatform::MobilePlatform()
 
     //Stop both dc motors
     motionStop();
+    
 }
 
 /*
@@ -149,6 +153,40 @@ void MobilePlatform::followLine()
 }
 
 /*
+
+ * Function to let the platform draw a circle clockwise with a set speed and radius
+ * The distance from one wheel center to the other measures 11cm
+ * @brief MobilePlatform::endFollowLine()
+*/
+void MobilePlatform::drawCircle()
+{   
+    double speedLeftEngine;
+    double speedRightEngine;
+    //Get current time
+    m_qtPreviousTime = QTime::currentTime();
+    //Calculates the angular velocity to
+    double angularVelocity=m_dCircleSpeed*(3.1415/m_iCircleRadius);
+    speedLeftEngine=m_dCircleSpeed*((m_iCircleRadius+5.5)/m_iCircleRadius);
+    speedRightEngine=m_dCircleSpeed*((m_iCircleRadius-5.5)/m_iCircleRadius);
+
+    m_pMotorLeft->setSpeed(speedLeftEngine);
+    m_pMotorRight->setSpeed(speedRightEngine);
+    m_pMotorLeft->forward();
+    m_pMotorRight->forward();
+
+    m_bendReached = true;
+
+    while((angularVelocity*m_qtPreviousTime.msecsTo(QTime::currentTime())) < (1000) && m_bendReached)
+    {
+        //Wait until circle is finished
+        QCoreApplication::processEvents();
+    }
+    m_pMotorLeft->stop();
+    m_pMotorRight->stop();
+}
+
+
+/*
  * Function to let the platform stop follow a white line on the Ground
  * @brief MobilePlatform::endFollowLine()
 */
@@ -201,7 +239,10 @@ void MobilePlatform::slot_moveLeft()
 */
 void MobilePlatform::slot_stopMotion()
 {
+    m_mutex.lock();
+    m_bendReached = false;
     motionStop();
+    m_mutex.unlock();
 }
 
 /*
@@ -231,3 +272,17 @@ void MobilePlatform::slot_endFollowLine()
     endFollowLine();
 }
 
+void MobilePlatform::slot_setCircleSpeed(double circleSpeed)
+{
+    m_dCircleSpeed = circleSpeed;
+}
+
+void MobilePlatform::slot_setCircleRadius(double circleRadius)
+{
+    m_iCircleRadius = circleRadius;
+}
+
+void MobilePlatform::slot_drawCircle()
+{
+    drawCircle();
+}
