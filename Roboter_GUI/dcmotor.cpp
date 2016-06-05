@@ -1,8 +1,9 @@
 #include "dcmotor.h"
 
 #define PID_LOOP_RATE 100
-//#define PID_LOOP_RATE 500
 #define DISPLAY_LOOP_RATE 200
+
+using namespace std;
 
 Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA, int pinEncoderB)
 {
@@ -16,11 +17,13 @@ Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA,
     m_fprevSpeed = 0;
     m_fprevOutput = 0;
     m_fPidIntegral = 0;
+
     m_dPGain = 80;
     m_dIGain = 3;
     m_dDGain = 0;
 
     initPins();
+
 
     m_pEncoder = new Encoder(m_ipinEncoderA, m_ipinEncoderB);
     m_pEncoder->startCount();
@@ -32,6 +35,7 @@ Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA,
     p_qtTimerPidController = new QTimer();
     connect(p_qtTimerPidController, SIGNAL(timeout()), this, SLOT(slot_pidController()));
     p_qtTimerPidController->start(PID_LOOP_RATE);
+
 }
 
 Dcmotor::~Dcmotor()
@@ -133,6 +137,8 @@ void Dcmotor::slot_pidController()
         double output;
         double deltaT;
         currentSpeed = m_pEncoder->getSpeed(&deltaT);
+
+
         targetSpeed = m_ftargetSpeed;
         errorSpeed = targetSpeed - currentSpeed;
         m_fPidIntegral = m_fPidIntegral + errorSpeed;
@@ -144,8 +150,6 @@ void Dcmotor::slot_pidController()
         m_fprevErrorSpeed = errorSpeed;
         m_fprevOutput = output;
         m_fprevSpeed = currentSpeed;
-
-        //std::cout << m_dPGain << std::endl;
     }
 }
 

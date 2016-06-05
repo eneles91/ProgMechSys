@@ -9,8 +9,6 @@
 #include <QTimer>
 #include <QTime>
 #include <QString>
-#include <iostream>
-
 
 /*!
  * \file dcmotor.h
@@ -126,6 +124,7 @@ private:
     Encoder* m_pEncoder;
 
     QTimer* p_qtTimerPidController;
+
 };
 
 #endif // DCMOTOR_H

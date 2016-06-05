@@ -57,7 +57,6 @@ float Encoder::getSpeed(double* p_deltaT)
     m_mutex.unlock();
 
     *p_deltaT = (float)deltaT/1000;
-    //std::cout << "" << std::endl;
 
     float currentSpeed = (ticks * 0.063 * PI * 1000) / (1440 * deltaT);
     return currentSpeed;

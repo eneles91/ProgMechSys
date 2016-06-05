@@ -1,5 +1,7 @@
 #include "mobileplatform.h"
 
+//Konstanten
+#define PI 3.1416
 //Pinbelegungen
 #define MOTOR_RIGHT_FORWARD     28
 #define MOTOR_RIGHT_BACKWARD    29
@@ -39,6 +41,7 @@ MobilePlatform::MobilePlatform()
     //Create two objects of the type Linesensor
     m_pLineSensorRight = new Linesensor(LINESENSOR_RIGHT);
     m_pLineSensorLeft = new Linesensor(LINESENSOR_LEFT);
+
 
     //Stop both dc motors
     motionStop();
@@ -160,14 +163,24 @@ void MobilePlatform::followLine()
 */
 void MobilePlatform::drawCircle()
 {   
+
     double speedLeftEngine;
     double speedRightEngine;
+
+    //Stop both Motors
+    m_pMotorLeft->stop();
+    m_pMotorRight->stop();
+
     //Get current time
     m_qtPreviousTime = QTime::currentTime();
-    //Calculates the angular velocity to
-    double angularVelocity=m_dCircleSpeed*(3.1415/m_iCircleRadius);
+
     speedLeftEngine=m_dCircleSpeed*((m_iCircleRadius+5.5)/m_iCircleRadius);
     speedRightEngine=m_dCircleSpeed*((m_iCircleRadius-5.5)/m_iCircleRadius);
+
+    std::cout << "==============================" << std::endl;
+    std::cout << "Speed left: " << speedLeftEngine << std::endl;
+    std::cout << "Speed right: " << speedRightEngine << std::endl;
+    std::cout << "==============================" << std::endl;
 
     m_pMotorLeft->setSpeed(speedLeftEngine);
     m_pMotorRight->setSpeed(speedRightEngine);
@@ -176,7 +189,7 @@ void MobilePlatform::drawCircle()
 
     m_bendReached = true;
 
-    while((angularVelocity*m_qtPreviousTime.msecsTo(QTime::currentTime())) < (1000) && m_bendReached)
+    while((m_qtPreviousTime.msecsTo(QTime::currentTime())) < (2*PI*m_iCircleRadius/m_dCircleSpeed*10) && m_bendReached)
     {
         //Wait until circle is finished
         QCoreApplication::processEvents();
@@ -184,7 +197,6 @@ void MobilePlatform::drawCircle()
     m_pMotorLeft->stop();
     m_pMotorRight->stop();
 }
-
 
 /*
  * Function to let the platform stop follow a white line on the Ground

@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QThread>
 #include <QTime>
+#include <QTimer>
 #include <QMutex>
 #include <QCoreApplication>
 #include "dcmotor.h"
@@ -41,6 +42,7 @@ public:
     void followLine();
     void endFollowLine();
     void drawCircle();
+
 public slots:
 
     void slot_followLine();
@@ -57,7 +59,7 @@ public slots:
 
 signals:
 private:
-    
+
     QTime m_qtPreviousTime;
     QThread m_thread;
     QMutex m_mutex;
