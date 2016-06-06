@@ -143,7 +143,7 @@ void Dcmotor::slot_pidController()
         errorSpeed = targetSpeed - currentSpeed;
         m_fPidIntegral = m_fPidIntegral + errorSpeed;
 
-        output = m_fprevOutput + (m_dPGain * errorSpeed + m_dIGain * deltaT * m_fPidIntegral);// + m_dDGain / deltaT * (errorSpeed - m_fprevErrorSpeed));
+        output = m_fprevOutput + (m_dPGain * errorSpeed + m_dIGain * deltaT * m_fPidIntegral + m_dDGain / deltaT * (errorSpeed - m_fprevErrorSpeed));
         output_Pwm = (int)output;
         setPwm(output_Pwm);
 

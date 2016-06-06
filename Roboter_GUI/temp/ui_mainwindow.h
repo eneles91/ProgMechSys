@@ -226,6 +226,7 @@ public:
         iGain_r = new QDoubleSpinBox(centralWidget);
         iGain_r->setObjectName(QString::fromUtf8("iGain_r"));
         iGain_r->setGeometry(QRect(540, 90, 71, 31));
+        iGain_r->setMaximum(5000);
         iGain_r->setValue(3);
         dGain_r = new QDoubleSpinBox(centralWidget);
         dGain_r->setObjectName(QString::fromUtf8("dGain_r"));
