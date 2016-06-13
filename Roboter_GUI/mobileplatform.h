@@ -2,6 +2,7 @@
 #define MOBILEPLATFORM_H
 
 #include <iostream>
+#include <cmath>
 #include <QObject>
 #include <QThread>
 #include <QTime>
@@ -9,6 +10,7 @@
 #include <QMutex>
 #include <QCoreApplication>
 #include "dcmotor.h"
+#include "ultrasonic.h"
 #include "linesensor.h"
 
 /*

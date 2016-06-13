@@ -59,6 +59,25 @@ float Encoder::getSpeed(double* p_deltaT)
     *p_deltaT = (float)deltaT/1000;
 
     float currentSpeed = (ticks * 0.063 * PI * 1000) / (1440 * deltaT);
+     /*if (oldCurrentSpeed[0]==0 || oldCurrentSpeed[1]==0 || oldCurrentSpeed[2]==0 || oldCurrentSpeed[3]==0 || oldCurrentSpeed[4]==0)
+     {
+         oldCurrentSpeed[0] = currentSpeed;
+         oldCurrentSpeed[1] = currentSpeed;
+         oldCurrentSpeed[2] = currentSpeed;
+         oldCurrentSpeed[3] = currentSpeed;
+         oldCurrentSpeed[4] = currentSpeed;
+     }
+     else
+     {
+         oldCurrentSpeed[4] = oldCurrentSpeed[3];
+         oldCurrentSpeed[3] = oldCurrentSpeed[2];
+         oldCurrentSpeed[2] = oldCurrentSpeed[1];
+         oldCurrentSpeed[1] = oldCurrentSpeed[0];
+         oldCurrentSpeed[0] = currentSpeed;
+     }
+
+    currentSpeed = (oldCurrentSpeed[4] + oldCurrentSpeed[3] + oldCurrentSpeed[2] + oldCurrentSpeed[1] + oldCurrentSpeed[0])/5;*/
+
     return currentSpeed;
 }
 

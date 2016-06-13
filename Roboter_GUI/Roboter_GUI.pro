@@ -11,6 +11,7 @@ SOURCES += main.cpp\
     dcmotor.cpp \
     linesensor.cpp \
     mobileplatform.cpp \
+    ultrasonic.cpp \
     encoder.cpp
 
 INCLUDEPATH += ../wiringPI/wiringPI
@@ -21,6 +22,7 @@ HEADERS  += mainwindow.h \
     dcmotor.h \
     linesensor.h \
     mobileplatform.h \
+    ultrasonic.h \
     encoder.h
 
 DESTDIR = ./bin

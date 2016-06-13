@@ -1,4 +1,4 @@
-#include "mobileplatform.h"
+..#include "mobileplatform.h"
 
 //Konstanten
 #define PI 3.1416

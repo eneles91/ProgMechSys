@@ -35,7 +35,7 @@ Dcmotor::Dcmotor(int pinForward, int pinBackward, int pinSpeed, int pinEncoderA,
     p_qtTimerPidController = new QTimer();
     connect(p_qtTimerPidController, SIGNAL(timeout()), this, SLOT(slot_pidController()));
     p_qtTimerPidController->start(PID_LOOP_RATE);
-
+    std::cout << "test" << std::endl;
 }
 
 Dcmotor::~Dcmotor()

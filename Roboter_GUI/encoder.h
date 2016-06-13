@@ -35,6 +35,7 @@ private:
     int m_iOldStatusPinB;
     int m_iCurrentTicks;
     bool isStopped;
+    float oldCurrentSpeed[5];
 
     QThread m_encoderThread;
     QMutex m_mutex;
